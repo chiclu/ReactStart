@@ -4,10 +4,13 @@ import './Cards.css';
 
 const Cards = (props) => {
 
-const renderCards = () => (
-    props.data.map((item, i) => {
+  const renderCards = () => (
+    props.data.map((item) => {
       return (
-        <Card item={item}  key={i} removeCard={props.removeCard} />
+        <Card item={item}  
+              key={item.id} 
+              removeCard={(id) => props.removeCard(id)}
+              duplicateCard={(id) => props.duplicateCard(id)} />
         )
     }) 
   ) 
