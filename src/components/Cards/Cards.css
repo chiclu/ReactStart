@@ -7,3 +7,18 @@
 	display: flex;
 	flex-wrap: wrap;
 }
+
+.add-card {
+	height: 40px;
+	width: 40px;
+	border: solid 3px #ccc;
+	border-radius: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #ccc;
+	margin: 30px auto 0;
+	font-size: 24px;
+	font-weight: bold;
+	cursor: pointer;
+}
