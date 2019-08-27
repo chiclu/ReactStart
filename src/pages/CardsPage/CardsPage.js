@@ -2,37 +2,20 @@ import React, {Component} from 'react';
 
 import uuid from 'react-uuid';
 import {Cards} from '../../components/Cards/Cards';
+import {connect} from 'react-redux';
+import { setData } from '../../store/actionCreators';
 
-class CardsPage extends Component {
+class CardsPageClass extends Component {
 
 	state = {
 		data: []
 	}
 
 	componentDidMount() {
-    	this.setData();
+    	this.props.setData();
   	}
 
-  	setData = () => {
-    
-	    fetch("https://tresome-cfd2f.firebaseio.com/people.json")
-	    .then(response => {
-	      return response.json()
-	    })
-	    .then(response => {
-	      const persons = [];
-
-	        for(let person in response) {
-	          response[person].id = person;
-	          persons.push(response[person])
-	        }
-	        
-	    this.setState({
-	      data: persons
-	    }) 
-	  })
-	}
-
+   
 	onCardSearch = (data) => {
 	    this.setState({
 	      searchedData: data
@@ -84,7 +67,7 @@ class CardsPage extends Component {
 	    const displayData = searchedData || data;
 
 	    return (
-	      <Cards data={displayData} 
+	      <Cards 
 	                removeCard={(id) => this.onCardRemove(id)}
 	                duplicateCard={(id) => this.onCardDuplicate(id)}
 	                openForm={this.onFormOpen} />
@@ -98,5 +81,18 @@ class CardsPage extends Component {
 	}
 }
 
+const mapStateToProps = state => {
+	return {
+
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		setData: () => dispatch(setData())
+	}
+}
+
+const CardsPage = connect(mapStateToProps, mapDispatchToProps)(CardsPageClass);
 
 export {CardsPage};

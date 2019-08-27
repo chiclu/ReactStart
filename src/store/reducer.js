@@ -2,7 +2,8 @@ import * as actionTypes from './actionTypes';
 
 const initialState = {
 	age: 45,
-	name: "Nikola"
+	name: "Nikola",
+	data: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -19,6 +20,11 @@ const reducer = (state = initialState, action) => {
 			name: action.value,
 			lastName: action.lastName
 		}
+		case actionTypes.SET_DATA:
+			return {
+				...state,
+				data: action.data
+			}
 		default: 
 			return state;
 	}
